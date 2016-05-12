@@ -4,7 +4,7 @@
  * Class to handle all db operations
  * This class will have CRUD methods for database tables
  *
- * @author Kimar Henry
+ * @author Kimar henry
  */
 class DbHandler {
  

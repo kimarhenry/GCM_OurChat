@@ -7,7 +7,7 @@ define('DB_PASSWORD', '');
 define('DB_HOST', 'localhost');
 define('DB_NAME', 'gcm_chat');
 
-define("GOOGLE_API_KEY", "AIzaSyAisGBL4FuRvR7MMWXi-Spr3j3y4iRzWH8");
+define("GOOGLE_API_KEY", "AIzaSyBYXJalpDs3Y5ykx_CPXw0O4VpkdjYHC18");
 
 // push notification flags
 define('PUSH_FLAG_CHATROOM', 1);
