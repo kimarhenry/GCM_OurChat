@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2016 at 01:02 PM
+-- Generation Time: May 12, 2016 at 05:52 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   KEY `chat_room_id` (`chat_room_id`),
   KEY `user_id` (`user_id`),
   KEY `chat_room_id_2` (`chat_room_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Dumping data for table `messages`
@@ -77,7 +77,9 @@ INSERT INTO `messages` (`message_id`, `chat_room_id`, `user_id`, `message`, `cre
 (22, 3, 0, 'thank u', '2016-05-12 10:58:05'),
 (23, 4, 0, 'yes', '2016-05-12 10:58:14'),
 (24, 1, 0, 'hey', '2016-05-12 10:59:19'),
-(25, 1, 0, 'how u doing\n', '2016-05-12 10:59:23');
+(25, 1, 0, 'how u doing\n', '2016-05-12 10:59:23'),
+(26, 1, 0, 'hi', '2016-05-12 14:20:48'),
+(27, 1, 0, 'hi', '2016-05-12 14:20:56');
 
 -- --------------------------------------------------------
 
