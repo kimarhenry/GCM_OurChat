@@ -34,8 +34,8 @@ class Demo {
     }
  
     public function getDemoUser() {
-        $name = 'AndroidHive';
-        $email = 'admin@androidhive.info';
+        $name = 'KimarHenry';
+        $email = 'kimarhenry@yahoo.com';
          
         $stmt = $this->conn->prepare("SELECT user_id from users WHERE email = ?");
         $stmt->bind_param("s", $email);

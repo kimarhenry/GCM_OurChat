@@ -11,7 +11,6 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 import com.example.kimar.ourchat.helper.MyPreferenceManager;
-import com.example.kimar.ourchat.activity.LoginActivity;
 
 public class MyApplication extends Application {
 
@@ -68,7 +67,7 @@ public class MyApplication extends Application {
 
     public void logout() {
         pref.clear();
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, com.example.kimar.ourchat.activity.LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
