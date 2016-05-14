@@ -4,7 +4,7 @@
  * Class to handle all db operations
  * This class will have CRUD methods for database tables
  *
- * @author Kimar Henry
+ * 
  */
 class Demo {
  
@@ -34,8 +34,8 @@ class Demo {
     }
  
     public function getDemoUser() {
-        $name = 'KimarHenry';
-        $email = 'kimarhenry@yahoo.com';
+        $name = 'Admin';
+        $email = 'admin@alocalhost.info';
          
         $stmt = $this->conn->prepare("SELECT user_id from users WHERE email = ?");
         $stmt->bind_param("s", $email);

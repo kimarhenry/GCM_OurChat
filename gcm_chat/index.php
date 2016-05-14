@@ -2,34 +2,35 @@
 error_reporting(-1);
 ini_set('display_errors', 'On');
 ?>
-
+ 
 <?php
 require_once __DIR__ . '/demo.php';
 $demo = new Demo();
 $admin_id = $demo->getDemoUser();
 ?>
-
+ 
 <html>
     <head>
-        <title>OurChat</title>
+        <title>Our Chat</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href='https://fonts.googleapis.com/css?family=Raleway:400,800,100' rel='stylesheet' type='text/css'>
         <link href='style.css' rel='stylesheet' type='text/css'>
+        <link href='http://api.androidhive.info/gcm/styles/default.css' rel='stylesheet' type='text/css'>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
         <script type="text/javascript">
             var user_id = '<?= $admin_id ?>';
             $(document).ready(function () {
-
+ 
                 getChatroomMessages($('#topics li:first').attr('id'));
-
-
+ 
+ 
                 $('ul#topics li').on('click', function () {
                     $('ul#topics li').removeClass('selected');
                     $(this).addClass('selected');
                     getChatroomMessages($(this).prop('id'))
                 });
-
+ 
                 function getChatroomMessages(id) {
                     $.getJSON("v1/chat_rooms/" + id, function (data) {
                         var li = '';
@@ -41,27 +42,27 @@ $admin_id = $demo->getDemoUser();
                             scrollToBottom('msg_container_topic');
                         }
                     }).done(function () {
-
+ 
                     }).fail(function () {
-                        alert('Sorry! Unable to fetch topic messages 1');
+                        alert('Sorry! Unable to fetch topic messages');
                     }).always(function () {
-
+ 
                     });
-
+ 
                     // attaching the chatroom id to send button
                     $('#send_to_topic').attr('chat_room', id);
                 }
-
+ 
                 $('#send_to_topic').on('click', function () {
                     var msg = $('#send_to_topic_message').val();
                     if (msg.trim().length === 0) {
                         alert('Enter a message');
                         return;
                     }
-
+ 
                     $('#send_to_topic_message').val('');
                     $('#loader_topic').show();
-
+ 
                     $.post("v1/chat_rooms/" + $(this).attr('chat_room') + '/message',
                             {user_id: user_id, message: msg},
                     function (data) {
@@ -70,17 +71,17 @@ $admin_id = $demo->getDemoUser();
                             $('ul#topic_messages').append(li);
                             scrollToBottom('msg_container_topic');
                         } else {
-                            alert('Sorry! Unable to send message 2');
+                            alert('Sorry! Unable to send message');
                         }
                     }).done(function () {
-
+ 
                     }).fail(function () {
-                        alert('Sorry! Unable to send message 3');
+                        alert('Sorry! Unable to send message');
                     }).always(function () {
                         $('#loader_topic').hide();
                     });
                 });
-
+ 
                 $('input#send_to_single_user').on('click', function () {
                     var msg = $('#send_to_single').val();
                     var to = $('.select_single').val();
@@ -88,10 +89,10 @@ $admin_id = $demo->getDemoUser();
                         alert('Enter a message');
                         return;
                     }
-
+ 
                     $('#send_to_single').val('');
                     $('#loader_single').show();
-
+ 
                     $.post("v1/users/" + to + '/message',
                             {user_id: user_id, message: msg},
                     function (data) {
@@ -102,37 +103,37 @@ $admin_id = $demo->getDemoUser();
                             alert('Sorry! Unable to post message');
                         }
                     }).done(function () {
-
+ 
                     }).fail(function () {
                         alert('Sorry! Unable to send message');
                     }).always(function () {
                         $('#loader_single').hide();
                     });
                 });
-
+ 
                 $('input#send_to_multiple_users').on('click', function () {
                     var msg = $('#send_to_multiple').val();
                     var to = $('.select_multiple').val();
-
+ 
                     if (to === null) {
                         alert("Please select the users!");
                         return;
                     }
-
+ 
                     if (msg.trim().length === 0) {
                         alert('Enter a message');
                         return;
                     }
-
+ 
                     $('#send_to_multiple').val('');
                     $('#loader_multiple').show();
-
+ 
                     var selMulti = $.map($(".select_multiple option:selected"), function (el, i) {
                         return $(el).val();
                     });
-
+ 
                     to = selMulti.join(",");
-
+ 
                     $.post("v1/users/message",
                             {user_id: user_id, to: to, message: msg},
                     function (data) {
@@ -143,25 +144,25 @@ $admin_id = $demo->getDemoUser();
                             alert('Sorry! Unable to send message');
                         }
                     }).done(function () {
-
+ 
                     }).fail(function () {
                         alert('Sorry! Unable to send message');
                     }).always(function () {
                         $('#loader_multiple').hide();
                     });
                 });
-
+ 
                 $('input#send_to_multiple_users_with_image').on('click', function () {
-
+ 
                     var msg = $('#send_to_multiple_with_image').val();
                     if (msg.trim().length === 0) {
                         alert('Enter a message');
                         return;
                     }
-
+ 
                     $('#send_to_multiple_with_image').val('');
                     $('#loader_multiple_with_image').show();
-
+ 
                     $.post("v1/users/send_to_all",
                             {user_id: user_id, message: msg},
                     function (data) {
@@ -172,14 +173,14 @@ $admin_id = $demo->getDemoUser();
                             alert('Sorry! Unable to send message');
                         }
                     }).done(function () {
-
+ 
                     }).fail(function () {
                         alert('Sorry! Unable to send message');
                     }).always(function () {
                         $('#loader_topic_with_image').hide();
                     });
                 });
-
+ 
                 function scrollToBottom(cls) {
                     $('.' + cls).scrollTop($('.' + cls + ' ul li').last().position().top + $('.' + cls + ' ul li').last().height());
                 }
@@ -188,15 +189,15 @@ $admin_id = $demo->getDemoUser();
     </head>
     <body>
         <div class="header">
-            <label class="logo">OurChat</label>
+            <label class="logo">Our Chat</label>
             <h2>Google Cloud Messaging</h2>
-            <h2 class="small">Sending push notifications using Android, PHP & MySQL</h2>
+            <h2 class="small">Sending push notifications to mobile users</h2>
         </div>
         <div class="container_body">
             <div class="topics">
-                <h2 class="heading">Chat with your classmates</h2>
-             </div>
-
+                <h2 class="heading">Chat with your classmate</h2>
+            </div>
+ 
             <div class="topics">
                 <div class="separator"></div>
                 <h2 class="heading">Sending message to a `topic`</h2>
@@ -232,7 +233,7 @@ $admin_id = $demo->getDemoUser();
                 <div class="separator"></div>
                 <h2 class="heading">Sending message to `Single User`</h2>
                 Select your name from the below recipients and send a message<br/><br/>
-
+ 
                 <div class="container">
                     <select class="select_single">
                         <?php
@@ -252,7 +253,7 @@ $admin_id = $demo->getDemoUser();
                 <div class="separator"></div>
                 <h2 class="heading">Sending message to `Multiple Users`</h2>
                 Select multiple recipients and send a message. You can use ctrl or shift to select multiple users<br/><br/><br/>
-
+ 
                 <div class="container">
                     <select multiple class="select_multiple">
                         <?php
@@ -268,13 +269,13 @@ $admin_id = $demo->getDemoUser();
                     <input id="send_to_multiple_users" type="button" value="Send to multiple users" class="btn_send"/>
                     <img src="loader.gif" id="loader_multiple" class="loader"/>
                 </div>
-
+ 
                 <br/>
                 <div class="separator"></div>
                 <h2 class="heading">Sending push notification with an `Image`</h2>
                 A message with an image attachment will be sent to every user. You have to minimize or close the app in order to see
                 it in action.<br/><br/>
-
+ 
                 <div class="container">
                     <textarea id="send_to_multiple_with_image" class="textarea_msg" placeholder="Type a message"></textarea><br/>
                     <input id="send_to_multiple_users_with_image" type="button" value="Send with image" class="btn_send"/>

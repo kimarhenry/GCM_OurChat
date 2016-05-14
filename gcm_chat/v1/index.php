@@ -253,7 +253,7 @@ $app->post('/users/send_to_all', function() use ($app) {
     $data = array();
     $data['user'] = $user;
     $data['message'] = $msg;
-    $data['image'] = 'http://www.androidhive.info/wp-content/uploads/2016/01/Air-1.png';
+    $data['image'] = 'https://cdn3.vox-cdn.com/thumbor/k-oCZwNCMKFy10GN0ASjS9JEtp0=/0x0:960x540/1280x720/cdn0.vox-cdn.com/uploads/chorus_image/image/48933053/pokemon_sun_moon.0.0.jpg';
  
     $push->setTitle("Google Cloud Messaging");
     $push->setIsBackground(FALSE);
@@ -381,4 +381,4 @@ function echoRespnse($status_code, $response) {
 }
  
 $app->run();
-?>
+?>  

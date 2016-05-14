@@ -4,7 +4,7 @@
  * Class to handle all db operations
  * This class will have CRUD methods for database tables
  *
- * @author Kimar henry
+ * 
  */
 class DbHandler {
  
@@ -24,11 +24,11 @@ class DbHandler {
         // First check if user already existed in db
         if (!$this->isUserExists($email)) {
             // insert query
-            $stmt = $this->conn->prepare("INSERT INTO users(name, email) values(?, ?)");
+            $stmt = $this->conn->prepare("INSERT INTO users (name, email) values(?, ?)");
             $stmt->bind_param("ss", $name, $email);
- 
+            
             $result = $stmt->execute();
- 
+            
             $stmt->close();
  
             // Check for successful insertion
