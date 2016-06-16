@@ -25,6 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `chat_rooms`
 --
+--
 
 CREATE TABLE IF NOT EXISTS `chat_rooms` (
   `chat_room_id` int(11) NOT NULL AUTO_INCREMENT,
